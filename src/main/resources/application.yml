@@ -1,0 +1,25 @@
+server:
+  port: 9020
+spring:
+  h2:
+    console:
+      path: /h2
+      enabled: true
+      settings:
+        web-allow-others: true
+  datasource:
+    url: jdbc:h2:file:~/mydb;
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+    initialization-mode: always
+
+  jpa:
+    defer-datasource-initialization: true
+    sql:
+      init:
+        mode: always
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: none
+      show-sql: true
