@@ -42,23 +42,23 @@ public class BookController {
     }
 
     @PostMapping("/books")
-    public ResponseEntity<String> addBooks(@RequestBody Book book) {
+    public ResponseEntity<Book> addBooks(@RequestBody Book book) {
         try {
-            bookService.addBook(book);
-            return new ResponseEntity<>("SAVE_SUCCESS", HttpStatus.OK);
+            Book bookObj = bookService.addBook(book);
+            return new ResponseEntity<>(bookObj, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("SAVE_ERROR", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
     @PutMapping("/books/{id}")
-    public ResponseEntity<String> updateBooks(@PathVariable Long id,
-                                              @RequestBody Book book) {
+    public ResponseEntity<Book> updateBooks(@PathVariable Long id,
+                                            @RequestBody Book book) {
         try {
-            bookService.updateBook(id, book);
-            return new ResponseEntity<>("UPDATED_SUCCESS", HttpStatus.OK);
+            Book bookObj = bookService.updateBook(id, book);
+            return new ResponseEntity<>(bookObj, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("UPDATED_ERROR", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -68,7 +68,7 @@ public class BookController {
             bookService.deleteBook(id);
             return new ResponseEntity<>("DELETED_SUCCESS", HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("DELETED_ERROR", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("DELETED_ERROR", HttpStatus.NOT_FOUND);
 
         }
     }

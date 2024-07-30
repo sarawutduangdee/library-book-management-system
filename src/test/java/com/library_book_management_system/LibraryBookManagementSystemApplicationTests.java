@@ -4,10 +4,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class LibraryBookManagementSystemApplicationTests {
+public class LibraryBookManagementSystemApplicationTests {
+    @Test
+    void contextLoads() {
+    }
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void applicationContextTest() {
+        LibraryBookManagementSystemApplication.main(new String[]{});
 
+    }
 }
